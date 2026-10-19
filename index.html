@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Best Way to Learn English Words — Grade 5 Project</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAF6F0;
+      --bg-peach: #F9E6D8;
+      --bg-peach-soft: #FDF1E8;
+      --terracotta: #D96B43;
+      --orange-warm: #E87A5D;
+      --green-deep: #2D5A43;
+      --green-soft: #E3EFE8;
+      --text-brown: #2B2B2B;
+      --text-muted: #5C534E;
+      --card-radius: 18px;
+      --shadow-soft: 0 10px 28px -6px rgba(43, 43, 43, 0.08), 0 4px 12px -2px rgba(217, 107, 67, 0.08);
+      --shadow-hover: 0 16px 34px -6px rgba(43, 43, 43, 0.13), 0 6px 16px -3px rgba(217, 107, 67, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F0ECE6;
+      color: var(--text-brown);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Nunito', 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .storybook-bg {
+      background-color: var(--bg-cream);
+      background-image: 
+        radial-gradient(circle at 12% 18%, rgba(232, 122, 93, 0.10) 0%, transparent 28%),
+        radial-gradient(circle at 88% 82%, rgba(45, 90, 67, 0.09) 0%, transparent 32%),
+        radial-gradient(circle at 80% 15%, rgba(249, 230, 216, 0.7) 0%, transparent 25%);
+    }
+
+    /* Google Slides Stage & 16:9 Slide Canvas */
+    .gslides-workspace {
+      background-color: #E8E3DC;
+      background-image: radial-gradient(rgba(43, 43, 43, 0.06) 1px, transparent 0);
+      background-size: 20px 20px;
+    }
+
+    .gslides-canvas-wrapper {
+      width: 100%;
+      max-width: 1120px;
+      aspect-ratio: 16 / 9;
+      max-height: 100%;
+      position: relative;
+      border-radius: 14px;
+      box-shadow: 0 18px 48px rgba(43, 43, 43, 0.16), 0 2px 10px rgba(43, 43, 43, 0.08);
+      border: 1px solid rgba(43, 43, 43, 0.12);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Fullscreen / Present Mode overrides */
+    body.present-mode .gslides-top-chrome,
+    body.present-mode .gslides-filmstrip,
+    body.present-mode .gslides-notes-panel,
+    body.present-mode .gslides-bottom-bar {
+      display: none !important;
+    }
+
+    body.present-mode .gslides-workspace {
+      background: #181818;
+      padding: 0 !important;
+    }
+
+    body.present-mode .gslides-canvas-wrapper {
+      max-width: 100vw;
+      width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      aspect-ratio: auto;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    body:not(.present-mode) .present-floating-HUD {
+      display: none !important;
+    }
+
+    .story-card {
+      background: #FFFFFF;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-soft);
+      border: 2px solid rgba(217, 107, 67, 0.14);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.25s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(217, 107, 67, 0.38);
+    }
+
+    .story-card-peach {
+      background: var(--bg-peach-soft);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-soft);
+      border: 2px solid rgba(217, 107, 67, 0.22);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+    }
+
+    .story-card-peach:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .story-card-green {
+      background: var(--green-soft);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow-soft);
+      border: 2px solid rgba(45, 90, 67, 0.22);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+    }
+
+    .story-card-green:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .slide-section {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px) scale(0.99);
+      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.75rem 2.25rem;
+      overflow-y: auto;
+    }
+
+    body.present-mode .slide-section {
+      padding: 3.5rem 4rem 5rem 4rem;
+    }
+
+    .slide-section.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      z-index: 10;
+    }
+
+    /* Custom Scrollbars */
+    .slide-section::-webkit-scrollbar,
+    .gslides-filmstrip::-webkit-scrollbar {
+      width: 6px;
+    }
+    .slide-section::-webkit-scrollbar-thumb,
+    .gslides-filmstrip::-webkit-scrollbar-thumb {
+      background: rgba(217, 107, 67, 0.3);
+      border-radius: 999px;
+    }
+
+    /* Filmstrip Thumbnail Item */
+    .thumb-card {
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      background: var(--bg-cream);
+      border: 2px solid rgba(43, 43, 43, 0.14);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb-item:hover .thumb-card {
+      border-color: rgba(217, 107, 67, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .thumb-item.active .thumb-card {
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(217, 107, 67, 0.25);
+    }
+
+    .thumb-item.active .thumb-num {
+      color: var(--terracotta);
+      font-weight: 900;
+    }
+
+    .btn-terracotta {
+      background: linear-gradient(135deg, var(--terracotta), var(--orange-warm));
+      color: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(217, 107, 67, 0.28);
+      transition: all 0.2s ease;
+    }
+
+    .btn-terracotta:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(217, 107, 67, 0.42);
+      filter: brightness(1.04);
+    }
+
+    .btn-terracotta:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-green {
+      background: var(--green-deep);
+      color: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(45, 90, 67, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .btn-green:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(45, 90, 67, 0.36);
+    }
+
+    .dot-indicator {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background-color: rgba(43, 43, 43, 0.2);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .dot-indicator:hover {
+      background-color: rgba(217, 107, 67, 0.6);
+      transform: scale(1.2);
+    }
+
+    .dot-indicator.active {
+      width: 24px;
+      background-color: var(--terracotta);
+    }
+
+    .dot-indicator.video-dot.active {
+      background-color: var(--green-deep);
+    }
+
+    /* 16:9 Video Frame Styling */
+    .video-frame-16-9 {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      background: linear-gradient(145deg, #243B30 0%, #1B2A23 100%);
+      box-shadow: var(--shadow-soft);
+      border: 3px solid #FFFFFF;
+      outline: 2px solid rgba(217, 107, 67, 0.28);
+    }
+
+    .play-pulse {
+      animation: pulseRing 2.2s infinite;
+    }
+
+    @keyframes pulseRing {
+      0% { box-shadow: 0 0 0 0 rgba(232, 122, 93, 0.65); }
+      70% { box-shadow: 0 0 0 16px rgba(232, 122, 93, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(232, 122, 93, 0); }
+    }
+
+    .floating-slow {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .bar-fill {
+      transition: height 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .video-frame-9-16 {
+      position: relative;
+      height: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 22px;
+      overflow: hidden;
+      background: linear-gradient(165deg, #243B30 0%, #16241D 100%);
+      box-shadow: var(--shadow-soft);
+      border: 4px solid #FFFFFF;
+      outline: 2px solid rgba(45, 90, 67, 0.32);
+      margin: 0 auto;
+    }
+
+    .video-ready-badge {
+      background: rgba(250, 246, 240, 0.92);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(217, 107, 67, 0.3);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col h-screen w-screen overflow-hidden">
+
+  <!-- ==================== GOOGLE SLIDES TOP CHROME ==================== -->
+  <div class="gslides-top-chrome bg-[#FAF6F0] border-b border-[#D96B43]/20 select-none z-30 shrink-0">
+    <!-- Row 1: App Icon, Title, Menu Bar, and Present Button -->
+    <div class="flex items-center justify-between px-3 sm:px-5 pt-2 pb-1.5 gap-3">
+      <!-- Left: Google Slides Style Icon + Title + Menu -->
+      <div class="flex items-center gap-3 min-w-0">
+        <!-- Slides Icon -->
+        <button onclick="goToSlide(0)" title="На первый слайд" class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D96B43] to-[#E87A5D] flex items-center justify-center text-white shadow-sm hover:scale-105 transition shrink-0">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+            <path d="M7 7h10v7H7z" fill="#FAF6F0"/>
+            <path d="M7 16h6v1.5H7z" fill="#FAF6F0"/>
+          </svg>
+        </button>
+
+        <div class="min-w-0">
+          <!-- Document Title -->
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm sm:text-base text-[#2B2B2B] truncate">
+              The Best Way to Learn English Words — Grade 5 Project
+            </span>
+          </div>
+
+          <!-- Presentation Menu Bar -->
+          <div class="flex items-center gap-1 sm:gap-2 text-xs font-bold text-[#5C534E] mt-0.5 overflow-x-auto">
+            <button onclick="toggleOverviewModal()" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Все слайды (1–10)</button>
+            <button onclick="goToSlide(1)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Проблема (Сл. 2)</button>
+            <button onclick="goToSlide(2)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">3 Метода (Сл. 3)</button>
+            <button onclick="goToSlide(3)" class="bg-[#E3EFE8] hover:bg-[#2D5A43] hover:text-white text-[#2D5A43] font-extrabold px-2 py-0.5 rounded transition">🎬 Видео методов (Сл. 4–6)</button>
+            <button onclick="goToSlide(6)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Гипотеза (Сл. 7)</button>
+            <button onclick="goToSlide(7)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Результаты (Сл. 8)</button>
+            <button onclick="goToSlide(8)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Выводы (Сл. 9)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Grid View, Slideshow (Present) Button & Share Badge -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="toggleOverviewModal()" class="px-3 py-2 rounded-xl bg-white border border-[#D96B43]/25 text-xs font-extrabold text-[#2B2B2B] hover:bg-[#F9E6D8] transition flex items-center gap-1.5 shadow-sm" title="Сетка слайдов">
+          <svg class="w-4 h-4 text-[#D96B43]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+          <span class="hidden sm:inline">Сетка</span>
+        </button>
+
+        <button onclick="enterPresentMode()" class="btn-terracotta px-4 py-2 text-xs sm:text-sm font-extrabold flex items-center gap-2 shadow-sm">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <span>Слайд-шоу (Present)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Row 2: Google Slides Action Toolbar -->
+    <div class="flex items-center justify-between px-3 sm:px-5 py-1.5 bg-[#F4EDE4] border-t border-[#D96B43]/15 text-xs">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Toggle Filmstrip on Mobile/Desktop -->
+        <button onclick="toggleFilmstrip()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-[#F9E6D8] text-[#2B2B2B] font-extrabold border border-[#D96B43]/20 flex items-center gap-1 transition" title="Показать/скрыть панель слайдов слева">
+          <svg class="w-4 h-4 text-[#D96B43]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/>
+          </svg>
+          <span class="hidden md:inline">Панель слайдов</span>
+        </button>
+
+        <div class="h-4 w-[1px] bg-[#D96B43]/25 mx-0.5"></div>
+
+        <!-- Prev / Next Slide in Toolbar -->
+        <button onclick="prevSlide()" id="toolbar-prev" class="px-2.5 py-1 rounded-lg bg-white hover:bg-[#F9E6D8] text-[#2B2B2B] font-extrabold border border-[#D96B43]/20 flex items-center gap-1 transition">
+          <span>◀ Назад</span>
+        </button>
+        <button onclick="nextSlide()" id="toolbar-next" class="px-2.5 py-1 rounded-lg bg-white hover:bg-[#F9E6D8] text-[#2B2B2B] font-extrabold border border-[#D96B43]/20 flex items-center gap-1 transition">
+          <span>Вперед ▶</span>
+        </button>
+
+        <div class="h-4 w-[1px] bg-[#D96B43]/25 mx-0.5 hidden sm:block"></div>
+
+        <!-- Current Slide Pill -->
+        <span id="top-slide-badge" class="hidden sm:inline-block px-3 py-1 rounded-lg bg-white border border-[#D96B43]/20 font-extrabold text-[#D96B43]">
+          Слайд 1 из 10
+        </span>
+      </div>
+
+      <!-- Right side of Toolbar: Speaker Notes toggle -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSpeakerNotes()" id="notes-toggle-btn" class="px-2.5 py-1 rounded-lg bg-white hover:bg-[#F9E6D8] text-[#2D5A43] font-extrabold border border-[#2D5A43]/25 transition">
+          📝 Заметки
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN GOOGLE SLIDES EDITOR AREA ==================== -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- LEFT FILMSTRIP SIDEBAR (Список миниатюр 1–10 как в Google Slides) -->
+    <aside id="filmstrip-sidebar" class="gslides-filmstrip w-52 sm:w-60 bg-[#F7F2EB] border-r border-[#D96B43]/20 overflow-y-auto p-3 space-y-2.5 shrink-0 select-none z-20">
+      <div class="flex items-center justify-between px-1 pb-1 border-b border-[#D96B43]/15">
+        <span class="text-[11px] font-black uppercase tracking-wider text-[#5C534E]">Слайды (10)</span>
+        <span class="text-[10px] font-bold text-[#D96B43]">16:9</span>
+      </div>
+      <div id="filmstrip-list" class="space-y-2.5">
+        <!-- Populated dynamically by JS with mini slide previews -->
+      </div>
+    </aside>
+
+    <!-- CENTER STAGE + SPEAKER NOTES COLUMN -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+      <!-- 16:9 SLIDE CANVAS WORKSPACE -->
+      <div class="gslides-workspace flex-1 flex items-center justify-center p-2 sm:p-5 overflow-hidden relative">
+
+        <!-- THE 16:9 SLIDE CONTAINER -->
+        <main id="slides-viewport" class="gslides-canvas-wrapper storybook-bg">
+
+          <!-- Decorative Storybook SVG Corner Elements inside the slide -->
+          <div class="pointer-events-none absolute top-0 left-0 w-36 h-36 opacity-25 z-0">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="30" cy="30" r="90" fill="#E87A5D" />
+              <circle cx="110" cy="40" r="35" fill="#2D5A43" />
+            </svg>
+          </div>
+          <div class="pointer-events-none absolute bottom-0 right-0 w-44 h-44 opacity-20 z-0">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="160" cy="160" r="100" fill="#2D5A43" />
+              <circle cx="70" cy="170" r="45" fill="#D96B43" />
+            </svg>
+          </div>
+
+          <!-- ==================== SLIDE 1: TITLE ==================== -->
+          <section class="slide-section active" data-slide="0">
+            <div class="max-w-5xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10 my-auto">
+              <!-- Left Content -->
+              <div class="flex-1 text-center lg:text-left space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2D5A43] text-white text-xs sm:text-sm font-extrabold tracking-wide shadow-sm">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#F9E6D8] animate-pulse"></span>
+                  Educational Research
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#2B2B2B] leading-[1.12] tracking-tight">
+                  The Best Way to Learn <span class="text-[#D96B43] underline decoration-[#E87A5D]/40 decoration-wavy underline-offset-8">English Words</span>
+                </h1>
+
+                <div class="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                  <span class="px-5 py-2 rounded-2xl bg-[#F9E6D8] border-2 border-[#D96B43]/30 text-[#2B2B2B] text-lg sm:text-xl font-extrabold">
+                    🎒 Grade 5 Project
+                  </span>
+                  <span class="px-4 py-2 rounded-2xl bg-white border border-[#2D5A43]/20 text-[#2D5A43] text-xs sm:text-sm font-bold shadow-sm">
+                    Flashcards • Songs • Games
+                  </span>
+                </div>
+
+                <p class="text-sm sm:text-base text-[#5C534E] font-semibold max-w-xl mx-auto lg:mx-0">
+                  An interactive classroom experiment discovering how Grade 5 pupils remember new vocabulary best.
+                </p>
+
+                <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                  <button onclick="nextSlide()" class="btn-terracotta px-5 py-2.5 text-sm font-extrabold flex items-center gap-2">
+                    <span>Next Slide</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                  </button>
+                  <button onclick="goToSlide(3)" class="px-4 py-2.5 rounded-xl bg-white border-2 border-[#2D5A43]/25 text-[#2D5A43] font-extrabold text-xs sm:text-sm hover:bg-[#E3EFE8] transition">
+                    🎬 3 Videos in Action (Slide 4)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Storybook Illustration -->
+              <div class="w-full max-w-xs sm:max-w-sm lg:max-w-md flex-shrink-0">
+                <div class="story-card-peach p-5 sm:p-6 relative overflow-hidden">
+                  <div class="floating-slow">
+                    <svg viewBox="0 0 420 340" class="w-full h-auto drop-shadow-sm" fill="none">
+                      <circle cx="210" cy="170" r="135" fill="#FAF6F0" stroke="#D96B43" stroke-width="3" stroke-dasharray="8 8"/>
+                      <path d="M90 230 C135 215, 185 225, 210 240 C235 225, 285 215, 330 230 L330 265 C285 250, 235 260, 210 275 C185 260, 135 250, 90 265 Z" fill="#2D5A43"/>
+                      <path d="M98 222 C140 205, 185 215, 210 232 C235 215, 280 205, 322 222 L315 125 C275 110, 235 120, 210 136 C185 120, 145 110, 105 125 Z" fill="#FFFFFF" stroke="#2B2B2B" stroke-width="3.5" stroke-linejoin="round"/>
+                      <line x1="210" y1="136" x2="210" y2="232" stroke="#2B2B2B" stroke-width="3.5"/>
+                      <text x="128" y="175" fill="#D96B43" font-family="Nunito, sans-serif" font-weight="900" font-size="28">A B C</text>
+                      <line x1="125" y1="192" x2="188" y2="192" stroke="#D96B43" stroke-width="4" stroke-linecap="round"/>
+                      <line x1="125" y1="205" x2="172" y2="205" stroke="#E87A5D" stroke-width="4" stroke-linecap="round"/>
+                      <text x="232" y="175" fill="#2D5A43" font-family="Nunito, sans-serif" font-weight="900" font-size="22">WORDS</text>
+                      <line x1="232" y1="192" x2="295" y2="192" stroke="#2D5A43" stroke-width="4" stroke-linecap="round"/>
+                      <line x1="232" y1="205" x2="278" y2="205" stroke="#2D5A43" stroke-width="4" stroke-linecap="round"/>
+                      <g transform="translate(45, 55) rotate(-10)">
+                        <rect width="92" height="68" rx="14" fill="#FFFFFF" stroke="#D96B43" stroke-width="3.5"/>
+                        <circle cx="46" cy="28" r="13" fill="#E87A5D"/>
+                        <rect x="20" y="48" width="52" height="7" rx="3.5" fill="#2B2B2B"/>
+                      </g>
+                      <g transform="translate(175, 22)">
+                        <rect width="74" height="74" rx="20" fill="#2D5A43"/>
+                        <text x="22" y="50" fill="#FAF6F0" font-size="36">🎵</text>
+                      </g>
+                      <g transform="translate(285, 58) rotate(12)">
+                        <rect width="88" height="68" rx="14" fill="#D96B43"/>
+                        <text x="26" y="46" fill="#FFFFFF" font-size="34">🎲</text>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="text-center mt-1">
+                    <span class="text-[11px] font-extrabold uppercase tracking-widest text-[#D96B43]">Research Question</span>
+                    <p class="text-xs sm:text-sm font-bold text-[#2B2B2B]">Which method helps pupils remember words after 1 week?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 2: PROBLEM ==================== -->
+          <section class="slide-section" data-slide="1">
+            <div class="max-w-5xl mx-auto w-full my-auto space-y-6">
+              <div class="text-center space-y-1.5">
+                <span class="px-3.5 py-1 rounded-full bg-[#F9E6D8] text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 2 • The Problem
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
+                  Why I chose this project
+                </h2>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="story-card p-6 flex flex-col justify-between">
+                  <div class="w-14 h-14 rounded-2xl bg-[#F9E6D8] text-[#D96B43] flex items-center justify-center text-2xl mb-4 shadow-sm">
+                    🧩
+                  </div>
+                  <div class="space-y-2">
+                    <span class="text-xs font-black uppercase tracking-wider text-[#D96B43]">Challenge 01</span>
+                    <p class="text-lg sm:text-xl font-extrabold text-[#2B2B2B] leading-snug">
+                      "New English words can be difficult to remember."
+                    </p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-[#FAF6F0] flex items-center justify-between text-xs font-bold text-[#5C534E]">
+                    <span>Spelling & pronunciation</span>
+                    <span class="text-[#D96B43]">● ● ○</span>
+                  </div>
+                </div>
+
+                <div class="story-card-peach p-6 flex flex-col justify-between">
+                  <div class="w-14 h-14 rounded-2xl bg-white text-[#E87A5D] flex items-center justify-center text-2xl mb-4 shadow-sm">
+                    ⏳
+                  </div>
+                  <div class="space-y-2">
+                    <span class="text-xs font-black uppercase tracking-wider text-[#E87A5D]">Challenge 02</span>
+                    <p class="text-lg sm:text-xl font-extrabold text-[#2B2B2B] leading-snug">
+                      "Sometimes we learn a word and forget it later."
+                    </p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-[#D96B43]/15 flex items-center justify-between text-xs font-bold text-[#5C534E]">
+                    <span>Long-term memory</span>
+                    <span class="text-[#D96B43]">● ● ●</span>
+                  </div>
+                </div>
+
+                <div class="story-card-green p-6 flex flex-col justify-between">
+                  <div class="w-14 h-14 rounded-2xl bg-[#2D5A43] text-white flex items-center justify-center text-2xl mb-4 shadow-sm">
+                    💡
+                  </div>
+                  <div class="space-y-2">
+                    <span class="text-xs font-black uppercase tracking-wider text-[#2D5A43]">My Goal</span>
+                    <p class="text-lg sm:text-xl font-extrabold text-[#2B2B2B] leading-snug">
+                      "I wanted to find an easy and useful way to remember words."
+                    </p>
+                  </div>
+                  <div class="mt-5 pt-3 border-t border-[#2D5A43]/15 flex items-center justify-between text-xs font-bold text-[#2D5A43]">
+                    <span>Grade 5 Solution</span>
+                    <span>✓ Goal</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 3: METHODS ==================== -->
+          <section class="slide-section" data-slide="2">
+            <div class="max-w-5xl mx-auto w-full my-auto space-y-5">
+              <div class="text-center space-y-1">
+                <span class="px-3.5 py-1 rounded-full bg-[#E3EFE8] text-[#2D5A43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 3 • Methodology
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
+                  I compared three learning methods
+                </h2>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div onclick="showMethodPreview('flashcards')" class="story-card p-6 cursor-pointer group flex flex-col justify-between text-center items-center">
+                  <div>
+                    <div class="mx-auto w-16 h-16 rounded-2xl bg-[#F9E6D8] border-2 border-[#D96B43]/30 flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition">
+                      🖼️
+                    </div>
+                    <span class="px-3 py-0.5 rounded-full bg-[#FAF6F0] text-[#D96B43] text-xs font-black uppercase">1. Flashcards</span>
+                    <h3 class="text-xl sm:text-2xl font-black text-[#2B2B2B] mt-1.5">Flashcards</h3>
+                    <p class="text-base font-bold text-[#5C534E] mt-2">
+                      "look at pictures and say the words."
+                    </p>
+                  </div>
+                  <div class="mt-4 w-full py-2 rounded-xl bg-[#FAF6F0] group-hover:bg-[#D96B43] group-hover:text-white text-xs font-extrabold text-[#D96B43] transition">
+                    👁️ Click to Preview
+                  </div>
+                </div>
+
+                <div onclick="showMethodPreview('songs')" class="story-card-peach p-6 cursor-pointer group flex flex-col justify-between text-center items-center">
+                  <div>
+                    <div class="mx-auto w-16 h-16 rounded-2xl bg-white border-2 border-[#E87A5D]/40 flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition">
+                      🎵
+                    </div>
+                    <span class="px-3 py-0.5 rounded-full bg-white text-[#E87A5D] text-xs font-black uppercase">2. Songs</span>
+                    <h3 class="text-xl sm:text-2xl font-black text-[#2B2B2B] mt-1.5">Songs</h3>
+                    <p class="text-base font-bold text-[#5C534E] mt-2">
+                      "sing and repeat the words."
+                    </p>
+                  </div>
+                  <div class="mt-4 w-full py-2 rounded-xl bg-white group-hover:bg-[#E87A5D] group-hover:text-white text-xs font-extrabold text-[#E87A5D] transition">
+                    🎧 Click to Preview
+                  </div>
+                </div>
+
+                <div onclick="showMethodPreview('games')" class="story-card-green p-6 cursor-pointer group flex flex-col justify-between text-center items-center">
+                  <div>
+                    <div class="mx-auto w-16 h-16 rounded-2xl bg-[#2D5A43] text-white flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition">
+                      🎲
+                    </div>
+                    <span class="px-3 py-0.5 rounded-full bg-white text-[#2D5A43] text-xs font-black uppercase">3. Games</span>
+                    <h3 class="text-xl sm:text-2xl font-black text-[#2B2B2B] mt-1.5">Games</h3>
+                    <p class="text-base font-bold text-[#5C534E] mt-2">
+                      "play, practise, and remember."
+                    </p>
+                  </div>
+                  <div class="mt-4 w-full py-2 rounded-xl bg-white group-hover:bg-[#2D5A43] group-hover:text-white text-xs font-extrabold text-[#2D5A43] transition">
+                    🎮 Click to Preview
+                  </div>
+                </div>
+              </div>
+
+              <div id="method-preview-box" class="story-card p-3.5 px-5 flex items-center justify-between gap-3 bg-white/95">
+                <div class="flex items-center gap-3">
+                  <span id="method-preview-icon" class="text-xl">🎬</span>
+                  <p id="method-preview-text" class="text-xs sm:text-sm font-bold text-[#2B2B2B]">
+                    Нажмите на любую карточку метода или перейдите на <button onclick="goToSlide(3)" class="underline font-black text-[#D96B43]">Слайд 4 (Видео всех 3 методов)</button>, чтобы сразу показать их в действии!
+                  </p>
+                </div>
+                <button onclick="goToSlide(3)" class="text-[11px] font-extrabold uppercase px-3 py-1.5 rounded-lg bg-[#2D5A43] text-white hover:bg-[#D96B43] transition shrink-0">
+                  Смотреть 3 видео ▶
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 4: VIDEO 1 — FLASHCARDS ==================== -->
+          <section class="slide-section" data-slide="3">
+            <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
+              <div class="flex items-center justify-between border-b border-[#D96B43]/15 pb-2 shrink-0">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 rounded-full bg-[#D96B43] text-white font-extrabold text-xs uppercase tracking-wider">
+                    Slide 4 • Method 1: Flashcards
+                  </span>
+                  <h2 class="text-xl sm:text-2xl font-black text-[#2B2B2B]">
+                    Flashcards Group in Action
+                  </h2>
+                </div>
+                <span class="text-xs font-bold text-[#5C534E]">10 Target Words • Visual Learning</span>
+              </div>
+
+              <!-- YouTube плеер -->
+              <div class="flex-1 w-full min-h-0 flex items-center justify-center">
+                <div class="w-full h-full max-h-[440px] aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white outline outline-2 outline-[#D96B43]/20 bg-black">
+                  <iframe 
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/Wodrq6ZajgE?rel=0&modestbranding=1" 
+                    title="Flashcards Group Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-white/90 border border-[#D96B43]/20 flex items-center justify-between text-xs font-bold text-[#5C534E] shrink-0">
+                <span>🖼️ Pupils look at pictures and pronounce the target words aloud.</span>
+                <button onclick="nextSlide()" class="btn-terracotta px-3 py-1 text-xs font-extrabold">Следующее видео: Songs ▶</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 5: VIDEO 2 — SONGS ==================== -->
+          <section class="slide-section" data-slide="4">
+            <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
+              <div class="flex items-center justify-between border-b border-[#D96B43]/15 pb-2 shrink-0">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 rounded-full bg-[#E87A5D] text-white font-extrabold text-xs uppercase tracking-wider">
+                    Slide 5 • Method 2: Songs
+                  </span>
+                  <h2 class="text-xl sm:text-2xl font-black text-[#2B2B2B]">
+                    Songs & Singing Group
+                  </h2>
+                </div>
+                <span class="text-xs font-bold text-[#5C534E]">Rhythm & Melody Memory</span>
+              </div>
+
+              <!-- YouTube плеер -->
+              <div class="flex-1 w-full min-h-0 flex items-center justify-center">
+                <div class="w-full h-full max-h-[440px] aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white outline outline-2 outline-[#E87A5D]/30 bg-black">
+                  <iframe 
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/L85Dubuskc0?rel=0&modestbranding=1" 
+                    title="Songs Group Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-[#FDF1E8] border border-[#E87A5D]/25 flex items-center justify-between text-xs font-bold text-[#5C534E] shrink-0">
+                <span>🎵 Pupils sing along to the melody and repeat words in rhythm.</span>
+                <button onclick="nextSlide()" class="btn-green px-3 py-1 text-xs font-extrabold">Следующее видео: Games ▶</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 6: VIDEO 3 — GAMES IN ACTION ==================== -->
+          <section class="slide-section" data-slide="5">
+            <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
+              <div class="flex items-center justify-between border-b border-[#2D5A43]/15 pb-2 shrink-0">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 rounded-full bg-[#2D5A43] text-white font-extrabold text-xs uppercase tracking-wider">
+                    Slide 6 • Method 3: Games
+                  </span>
+                  <h2 class="text-xl sm:text-2xl font-black text-[#2B2B2B]">
+                    Games Group in Action
+                  </h2>
+                </div>
+                <span class="text-xs font-bold text-[#2D5A43]">Active Classroom Practice</span>
+              </div>
+
+              <!-- Разметка для вертикального 9:16 видео во всю высоту по центру -->
+              <div class="flex-1 flex flex-col md:flex-row items-center justify-center gap-6 min-h-0 py-1">
+                <div class="h-full max-h-[430px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-4 border-white outline outline-2 outline-[#2D5A43]/30 bg-black shrink-0">
+                  <iframe 
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/AA6UEpuNZLc?rel=0&modestbranding=1" 
+                    title="Games Group YouTube Shorts" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                  </iframe>
+                </div>
+
+                <div class="story-card-green p-5 max-w-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-[11px] font-black uppercase tracking-wider text-[#2D5A43]">Active Practice</span>
+                    <h3 class="text-lg font-black text-[#2B2B2B] mt-1">Interactive Classroom Games</h3>
+                    <p class="text-xs font-semibold text-[#5C534E] mt-2 leading-relaxed">
+                      Pupils match cards, compete in teams, and act out vocabulary words in real time.
+                    </p>
+                  </div>
+                  <div class="space-y-1 text-xs font-bold text-[#2D5A43] bg-white/80 p-3 rounded-xl border border-[#2D5A43]/20">
+                    <div>✓ 10 target vocabulary words</div>
+                    <div>✓ 15 minutes of high engagement</div>
+                    <div>✓ Highest 1-week retention score</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 7: HYPOTHESIS ==================== -->
+          <section class="slide-section" data-slide="6">
+            <div class="max-w-4xl mx-auto w-full my-auto text-center space-y-6">
+              <div class="space-y-1">
+                <span class="px-3.5 py-1 rounded-full bg-[#F9E6D8] text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 7 • Hypothesis
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
+                  What I expected
+                </h2>
+              </div>
+
+              <div class="story-card-peach p-7 sm:p-10 max-w-2xl mx-auto">
+                <div class="floating-slow inline-flex flex-col items-center">
+                  <span class="text-xs font-black uppercase tracking-widest text-[#2D5A43] mb-2">My Predicted Winner</span>
+                  <div class="px-8 py-4 rounded-3xl bg-gradient-to-r from-[#D96B43] to-[#E87A5D] text-white shadow-lg flex items-center gap-3 border-4 border-white">
+                    <span class="text-3xl sm:text-4xl">🎲</span>
+                    <span class="text-3xl sm:text-4xl font-black tracking-tight">Games</span>
+                  </div>
+                </div>
+
+                <p class="text-xl sm:text-2xl font-extrabold text-[#2B2B2B] mt-6 leading-relaxed">
+                  "Before the experiment, I thought games would help pupils remember the most words."
+                </p>
+
+                <div class="mt-5 pt-4 border-t border-[#D96B43]/20 flex flex-wrap items-center justify-center gap-2.5 text-xs sm:text-sm font-bold text-[#5C534E]">
+                  <span class="px-3 py-1 rounded-xl bg-white">✨ High engagement</span>
+                  <span class="px-3 py-1 rounded-xl bg-white">🤝 Teamwork</span>
+                  <span class="px-3 py-1 rounded-xl bg-white">😄 Fun emotions</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 8: RESULTS ==================== -->
+          <section class="slide-section" data-slide="7">
+            <div class="max-w-5xl mx-auto w-full my-auto space-y-4">
+              <div class="text-center space-y-1">
+                <span class="px-3.5 py-1 rounded-full bg-[#E3EFE8] text-[#2D5A43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 8 • Experiment Findings
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
+                  What did the results show?
+                </h2>
+                <p class="text-xs font-black uppercase tracking-widest text-[#D96B43]">
+                  THE METHOD THAT HELPED PUPILS REMEMBER THE MOST WORDS WAS:
+                </p>
+              </div>
+
+              <div class="story-card p-5 sm:p-6 space-y-4">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-3 pb-3 border-b border-[#FAF6F0]">
+                  <div class="flex items-center gap-3">
+                    <div id="winner-badge-icon" class="w-12 h-12 rounded-2xl bg-[#2D5A43] text-white flex items-center justify-center text-2xl shadow-md">
+                      🏆
+                    </div>
+                    <div>
+                      <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#2D5A43]">Best Retention After 1 Week</span>
+                      <h3 id="winner-method-title" class="text-xl sm:text-3xl font-black text-[#D96B43]">
+                        GAMES (9.2 / 10 words)
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-wrap items-center gap-1.5 bg-[#FAF6F0] p-1 rounded-xl border border-[#D96B43]/20">
+                    <button onclick="setChartView('week1')" id="chart-btn-week1" class="px-3 py-1 rounded-lg text-xs font-extrabold bg-[#D96B43] text-white transition">After 1 Week</button>
+                    <button onclick="setChartView('after')" id="chart-btn-after" class="px-3 py-1 rounded-lg text-xs font-extrabold text-[#2B2B2B] hover:bg-white transition">Right After</button>
+                    <button onclick="setChartView('before')" id="chart-btn-before" class="px-3 py-1 rounded-lg text-xs font-extrabold text-[#2B2B2B] hover:bg-white transition">Before Test</button>
+                  </div>
+                </div>
+
+                <div class="space-y-3">
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-xs sm:text-sm font-extrabold">
+                      <span>🖼️ Flashcards Group</span>
+                      <span id="score-flashcards" class="text-[#D96B43]">7.4 / 10 words</span>
+                    </div>
+                    <div class="w-full h-6 rounded-xl bg-[#FAF6F0] overflow-hidden p-1 border border-[#D96B43]/15">
+                      <div id="bar-flashcards" class="bar-fill h-full rounded-lg bg-[#E87A5D]" style="width: 74%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-xs sm:text-sm font-extrabold">
+                      <span>🎵 Songs Group</span>
+                      <span id="score-songs" class="text-[#D96B43]">8.1 / 10 words</span>
+                    </div>
+                    <div class="w-full h-6 rounded-xl bg-[#FAF6F0] overflow-hidden p-1 border border-[#D96B43]/15">
+                      <div id="bar-songs" class="bar-fill h-full rounded-lg bg-[#D96B43]" style="width: 81%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-xs sm:text-sm font-extrabold">
+                      <span>🎲 Games Group</span>
+                      <span id="score-games" class="text-[#2D5A43]">9.2 / 10 words ⭐</span>
+                    </div>
+                    <div class="w-full h-6 rounded-xl bg-[#FAF6F0] overflow-hidden p-1 border border-[#2D5A43]/25">
+                      <div id="bar-games" class="bar-fill h-full rounded-lg bg-[#2D5A43]" style="width: 92%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-[#FAF6F0] flex flex-col sm:flex-row items-center justify-between gap-2">
+                  <p class="text-xs sm:text-sm font-bold text-[#5C534E]">
+                    "After one week, I compared the test results to see which method worked best."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 9: CONCLUSIONS ==================== -->
+          <section class="slide-section" data-slide="8">
+            <div class="max-w-5xl mx-auto w-full my-auto space-y-6">
+              <div class="text-center space-y-1">
+                <span class="px-3.5 py-1 rounded-full bg-[#F9E6D8] text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 9 • Conclusions
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
+                  What I learned
+                </h2>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="story-card p-5 flex items-start gap-4">
+                  <div class="w-11 h-11 rounded-2xl bg-[#F9E6D8] text-[#D96B43] flex items-center justify-center text-xl shrink-0">🌟</div>
+                  <p class="text-base sm:text-lg font-extrabold text-[#2B2B2B] leading-snug">
+                    "Different methods can make learning more interesting."
+                  </p>
+                </div>
+
+                <div class="story-card-peach p-5 flex items-start gap-4">
+                  <div class="w-11 h-11 rounded-2xl bg-white text-[#E87A5D] flex items-center justify-center text-xl shrink-0">🎲</div>
+                  <p class="text-base sm:text-lg font-extrabold text-[#2B2B2B] leading-snug">
+                    "Games can help us practise while we have fun."
+                  </p>
+                </div>
+
+                <div class="story-card-green p-5 flex items-start gap-4">
+                  <div class="w-11 h-11 rounded-2xl bg-[#2D5A43] text-white flex items-center justify-center text-xl shrink-0">🇰🇿</div>
+                  <p class="text-base sm:text-lg font-extrabold text-[#2B2B2B] leading-snug">
+                    "English words can also teach us about family, respect, kindness, and Kazakhstan."
+                  </p>
+                </div>
+
+                <div class="story-card p-5 flex items-start gap-4">
+                  <div class="w-11 h-11 rounded-2xl bg-[#FAF6F0] border border-[#D96B43]/30 text-[#2B2B2B] flex items-center justify-center text-xl shrink-0">🤖</div>
+                  <p class="text-base sm:text-lg font-extrabold text-[#2B2B2B] leading-snug">
+                    "AI helped me prepare some tasks, but I did the experiment and compared the results myself."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 10: OUTRO ==================== -->
+          <section class="slide-section" data-slide="9">
+            <div class="max-w-4xl mx-auto w-full my-auto text-center">
+              <div class="story-card-peach p-7 sm:p-10">
+                <div class="w-20 h-20 mx-auto rounded-3xl bg-[#2D5A43] text-white flex items-center justify-center text-4xl shadow-lg mb-4 floating-slow">
+                  🎓
+                </div>
+
+                <span class="px-3.5 py-1 rounded-full bg-white text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 10 • Conclusion
+                </span>
+
+                <h2 class="text-3xl sm:text-5xl font-black text-[#2B2B2B] mt-3">
+                  Thank you for listening!
+                </h2>
+
+                <p class="text-lg sm:text-2xl font-extrabold text-[#2D5A43] mt-3 max-w-2xl mx-auto">
+                  "Learning English can be useful, meaningful, and fun."
+                </p>
+
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+                  <button onclick="triggerCelebration()" class="btn-terracotta px-6 py-3 text-sm font-extrabold flex items-center gap-2">
+                    <span>👏 Applause!</span>
+                  </button>
+                  <button onclick="goToSlide(3)" class="btn-green px-6 py-3 text-sm font-extrabold flex items-center gap-2">
+                    <span>🎬 Back to Videos (Slide 4)</span>
+                  </button>
+                </div>
+
+                <p id="applause-message" class="text-xs sm:text-sm font-extrabold text-[#D96B43] mt-3 opacity-0 transition-opacity duration-300">
+                  🎉 Great job on the Grade 5 Research Project! Do you have any questions?
+                </p>
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div>
+
+      <!-- Speaker Notes Collapsible Panel -->
+      <div id="speaker-notes-panel" class="gslides-notes-panel hidden bg-[#FAF6F0] border-t border-[#D96B43]/20 p-3 px-6 shrink-0 z-20">
+        <div class="flex items-start justify-between gap-4 max-w-5xl mx-auto">
+          <div class="space-y-1">
+            <span class="text-[11px] font-black uppercase tracking-wider text-[#2D5A43]">📝 Заметки докладчика</span>
+            <p id="speaker-note-text" class="text-xs sm:text-sm font-semibold text-[#2B2B2B] leading-relaxed"></p>
+          </div>
+          <button onclick="toggleSpeakerNotes()" class="text-xs font-bold text-[#5C534E] hover:text-[#2B2B2B]">✕</button>
+        </div>
+      </div>
+
+      <!-- Bottom Status & Navigation Bar -->
+      <div class="gslides-bottom-bar bg-[#F4EDE4] border-t border-[#D96B43]/15 px-4 py-2 flex items-center justify-between text-xs shrink-0 select-none z-20">
+        <div class="flex items-center gap-2">
+          <button id="btn-prev" onclick="prevSlide()" class="px-3 py-1 rounded-lg bg-white border border-[#D96B43]/20 font-bold hover:bg-[#F9E6D8] disabled:opacity-40 disabled:cursor-not-allowed">◀ Назад</button>
+          <button id="btn-next" onclick="nextSlide()" class="px-3 py-1 rounded-lg bg-white border border-[#D96B43]/20 font-bold hover:bg-[#F9E6D8] disabled:opacity-40 disabled:cursor-not-allowed">Вперед ▶</button>
+          <span id="bottom-slide-counter" class="font-extrabold text-[#5C534E] ml-2">Слайд 1 из 10</span>
+        </div>
+        <div id="dots-container" class="hidden sm:flex items-center gap-1.5">
+          <!-- Dots rendered by JS -->
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleOverviewModal()" class="font-bold text-[#5C534E] hover:text-[#D96B43]">Все слайды (1–10)</button>
+        </div>
+      </div>
+    </div> <!-- close center stage column -->
+  </div> <!-- close main editor area -->
+
+  <!-- Present Mode Floating HUD (shown in full screen slideshow) -->
+  <div class="present-floating-HUD fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#2B2B2B]/90 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center gap-4 shadow-2xl border border-white/20">
+    <button onclick="prevSlide()" class="hover:text-[#E87A5D] transition font-black text-sm">◀</button>
+    <span id="present-hud-counter" class="text-xs font-black tracking-wider text-[#FAF6F0]">1 / 10</span>
+    <button onclick="nextSlide()" class="hover:text-[#E87A5D] transition font-black text-sm">▶</button>
+    <div class="h-4 w-[1px] bg-white/20"></div>
+    <button onclick="exitPresentMode()" class="text-xs font-bold hover:text-[#E87A5D] transition">✕ Выйти (Esc)</button>
+  </div>
+
+  <!-- Overview Modal (All 10 Slides Grid) -->
+  <div id="overview-modal" class="fixed inset-0 z-50 bg-[#2B2B2B]/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="story-card max-w-4xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 space-y-5 bg-[#FAF6F0]">
+      <div class="flex items-center justify-between border-b border-[#D96B43]/20 pb-3">
+        <div>
+          <h3 class="text-xl font-black text-[#2B2B2B]">Все слайды презентации (1–10)</h3>
+          <p class="text-xs font-bold text-[#5C534E]">Нажмите на любой слайд для быстрого перехода</p>
+        </div>
+        <button onclick="toggleOverviewModal()" class="px-3 py-1.5 rounded-xl bg-white border border-[#D96B43]/30 font-extrabold text-sm hover:bg-[#F9E6D8]">
+          ✕ Закрыть
+        </button>
+      </div>
+      <div id="overview-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
+    </div>
+  </div>
+
+  <script>
+    const SLIDES_META = [
+      { num: 1, short: "Title", title: "The Best Way to Learn English Words", icon: "🎒", badge: "Grade 5 Project", note: "Hello everyone! Today I want to share my Grade 5 research project: The Best Way to Learn English Words." },
+      { num: 2, short: "The Problem", title: "Why I chose this project", icon: "🧩", badge: "3 Challenges", note: "New English words can be difficult to remember, and sometimes we forget them later." },
+      { num: 3, short: "3 Methods", title: "I compared three learning methods", icon: "🃏", badge: "Flashcards • Songs • Games", note: "I compared three learning methods: Flashcards, Songs, and Games. Let's look at each video!" },
+      { num: 4, short: "Flashcards", title: "Flashcards Group in Action", icon: "🖼️", badge: "Method 1", isVideo: true, note: "Here is the first group practising with Flashcards." },
+      { num: 5, short: "Songs", title: "Songs & Singing Group", icon: "🎵", badge: "Method 2", isVideo: true, note: "Here is the second group learning words with Songs and rhythm." },
+      { num: 6, short: "Games", title: "Games Group in Action", icon: "🎲", badge: "Method 3", isVideo: true, note: "Here is the third group playing interactive vocabulary games." },
+      { num: 7, short: "Hypothesis", title: "What I expected", icon: "💡", badge: "Predicted: Games", note: "Before the experiment, I predicted Games would win." },
+      { num: 8, short: "Results", title: "What did the results show?", icon: "📊", badge: "1 Week Retention", note: "Games helped pupils remember the most words after 1 week!" },
+      { num: 9, short: "Conclusions", title: "What I learned", icon: "🌟", badge: "Key Takeaways", note: "Different methods make learning interesting, and AI helped me prepare tasks." },
+      { num: 10, short: "Thank You!", title: "Thank you for listening!", icon: "🎓", badge: "Conclusion", note: "Thank you for listening! Do you have any questions?" }
+    ];
+
+    let currentSlide = 0;
+    const totalSlides = SLIDES_META.length;
+
+    // Initialize Filmstrip Thumbnails, Dots, Overview Grid
+    function initNavigationUI() {
+      const filmstripList = document.getElementById('filmstrip-list');
+      const dotsContainer = document.getElementById('dots-container');
+      const overviewGrid = document.getElementById('overview-grid');
+
+      if (filmstripList) filmstripList.innerHTML = '';
+      if (dotsContainer) dotsContainer.innerHTML = '';
+      if (overviewGrid) overviewGrid.innerHTML = '';
+
+      SLIDES_META.forEach((slide, i) => {
+        const isVideo = Boolean(slide.isVideo);
+
+        // 1. Filmstrip Thumbnail Item (Left Sidebar like Google Slides)
+        if (filmstripList) {
+          const thumbBtn = document.createElement('button');
+          thumbBtn.className = `thumb-item w-full flex items-start gap-2 text-left group focus:outline-none ${i === 0 ? 'active' : ''}`;
+          thumbBtn.onclick = () => goToSlide(i);
+          thumbBtn.innerHTML = `
+            <span class="thumb-num text-xs font-bold text-[#5C534E] w-4 text-right pt-1 shrink-0">${slide.num}</span>
+            <div class="thumb-card flex-1 p-2.5 flex flex-col justify-between ${isVideo ? 'bg-[#E3EFE8] border-[#2D5A43]/40' : 'bg-[#FAF6F0]'}">
+              <div class="flex items-center justify-between gap-1">
+                <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded ${isVideo ? 'bg-[#2D5A43] text-white' : 'bg-[#F9E6D8] text-[#D96B43]'} truncate">
+                  ${slide.short}
+                </span>
+                <span class="text-sm">${slide.icon}</span>
+              </div>
+              <p class="text-[11px] font-extrabold text-[#2B2B2B] leading-tight line-clamp-2 mt-1">
+                ${slide.title}
+              </p>
+              <div class="h-1 w-10 rounded-full ${isVideo ? 'bg-[#2D5A43]/60' : 'bg-[#D96B43]/40'} mt-1"></div>
+            </div>
+          `;
+          filmstripList.appendChild(thumbBtn);
+        }
+
+        // 2. Bottom Dot Indicator
+        if (dotsContainer) {
+          const dot = document.createElement('button');
+          dot.className = `dot-indicator ${isVideo ? 'video-dot' : ''} ${i === 0 ? 'active' : ''}`;
+          dot.title = `${slide.num}. ${slide.title}`;
+          dot.onclick = () => goToSlide(i);
+          dotsContainer.appendChild(dot);
+        }
+
+        // 3. Overview Modal Card
+        if (overviewGrid) {
+          const item = document.createElement('button');
+          item.className = `p-3.5 rounded-2xl text-left border-2 transition flex flex-col justify-between ${
+            isVideo ? 'bg-[#E3EFE8]/80 border-[#2D5A43]/40 hover:border-[#2D5A43]' : 'bg-white border-[#D96B43]/20 hover:border-[#D96B43]'
+          }`;
+          item.onclick = () => {
+            goToSlide(i);
+            toggleOverviewModal();
+          };
+          item.innerHTML = `
+            <span class="text-[11px] font-black uppercase tracking-wider ${isVideo ? 'text-[#2D5A43]' : 'text-[#D96B43]'}">
+              ${slide.icon} Слайд ${slide.num} • ${slide.badge}
+            </span>
+            <p class="text-sm font-extrabold text-[#2B2B2B] mt-1">${slide.title}</p>
+          `;
+          overviewGrid.appendChild(item);
+        }
+      });
+
+      updateSlideUI();
+    }
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+      updateSlideUI();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlideUI();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlideUI();
+      }
+    }
+
+    function updateSlideUI() {
+      const slides = document.querySelectorAll('.slide-section');
+      slides.forEach((sec, idx) => {
+        sec.classList.toggle('active', idx === currentSlide);
+      });
+
+      // Update Filmstrip active state & auto-scroll into view
+      const thumbs = document.querySelectorAll('.thumb-item');
+      thumbs.forEach((thumb, idx) => {
+        const isActive = idx === currentSlide;
+        thumb.classList.toggle('active', isActive);
+        if (isActive) {
+          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+
+      // Update Dots
+      const dots = document.querySelectorAll('.dot-indicator');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+
+      // Update Counters & Speaker Notes
+      const meta = SLIDES_META[currentSlide] || SLIDES_META[0];
+      const topBadge = document.getElementById('top-slide-badge');
+      if (topBadge) topBadge.textContent = `Слайд ${currentSlide + 1} из ${totalSlides}`;
+
+      const bottomCounter = document.getElementById('bottom-slide-counter');
+      if (bottomCounter) bottomCounter.textContent = `Слайд ${currentSlide + 1} из ${totalSlides} • ${meta.short}`;
+
+      const presentHud = document.getElementById('present-hud-counter');
+      if (presentHud) presentHud.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+      const speakerNote = document.getElementById('speaker-note-text');
+      if (speakerNote) speakerNote.textContent = meta.note;
+
+      // Update Prev/Next button states
+      const btnPrev = document.getElementById('btn-prev');
+      if (btnPrev) btnPrev.disabled = currentSlide === 0;
+
+      const btnNext = document.getElementById('btn-next');
+      if (btnNext) btnNext.disabled = currentSlide === totalSlides - 1;
+
+      const tbPrev = document.getElementById('toolbar-prev');
+      if (tbPrev) tbPrev.disabled = currentSlide === 0;
+
+      const tbNext = document.getElementById('toolbar-next');
+      if (tbNext) tbNext.disabled = currentSlide === totalSlides - 1;
+    }
+
+    function toggleFilmstrip() {
+      const sidebar = document.getElementById('filmstrip-sidebar');
+      if (sidebar) sidebar.classList.toggle('hidden');
+    }
+
+    function toggleSpeakerNotes() {
+      const panel = document.getElementById('speaker-notes-panel');
+      if (panel) panel.classList.toggle('hidden');
+    }
+
+    function enterPresentMode() {
+      document.body.classList.add('present-mode');
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    }
+
+    function exitPresentMode() {
+      document.body.classList.remove('present-mode');
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        document.body.classList.remove('present-mode');
+      }
+    });
+
+    // Keyboard navigation (Left / Right arrows + Space + Escape)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'Escape') {
+        if (document.body.classList.contains('present-mode')) {
+          exitPresentMode();
+        }
+        const modal = document.getElementById('overview-modal');
+        if (modal && !modal.classList.contains('hidden')) toggleOverviewModal();
+      }
+    });
+
+    // Touch Swipe support for mobile/tablet
+    let touchStartX = 0;
+    let touchEndX = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    function showMethodPreview(method) {
+      const iconEl = document.getElementById('method-preview-icon');
+      const textEl = document.getElementById('method-preview-text');
+      if (!iconEl || !textEl) return;
+      if (method === 'flashcards') {
+        iconEl.textContent = '🖼️';
+        textEl.innerHTML = '<strong class="text-[#D96B43]">Flashcards Group:</strong> Pupils looked at colorful illustrated cards (e.g., <em>family, kindness, guest</em>) and repeated the English word aloud.';
+      } else if (method === 'songs') {
+        iconEl.textContent = '🎵';
+        textEl.innerHTML = '<strong class="text-[#E87A5D]">Songs Group:</strong> Pupils sang a rhythmic chant with all 10 words, clapping to the beat and repeating the chorus together.';
+      } else if (method === 'games') {
+        iconEl.textContent = '🎲';
+        textEl.innerHTML = '<strong class="text-[#2D5A43]">Games Group:</strong> Pupils played team matching and charades, actively using the words to win points and help teammates.';
+      }
+    }
+
+    // Slide 8 Interactive Chart Data
+    const CHART_DATA = {
+      week1: {
+        flashcards: { score: '7.4 / 10 words', width: '74%' },
+        songs: { score: '8.1 / 10 words', width: '81%' },
+        games: { score: '9.2 / 10 words ⭐', width: '92%' }
+      },
+      after: {
+        flashcards: { score: '8.5 / 10 words', width: '85%' },
+        songs: { score: '8.8 / 10 words', width: '88%' },
+        games: { score: '9.5 / 10 words ⭐', width: '95%' }
+      },
+      before: {
+        flashcards: { score: '2.1 / 10 words', width: '21%' },
+        songs: { score: '2.0 / 10 words', width: '20%' },
+        games: { score: '2.2 / 10 words', width: '22%' }
+      }
+    };
+
+    function setChartView(stage) {
+      const data = CHART_DATA[stage];
+      if (!data) return;
+      const scoreFc = document.getElementById('score-flashcards');
+      const barFc = document.getElementById('bar-flashcards');
+      if (scoreFc) scoreFc.textContent = data.flashcards.score;
+      if (barFc) barFc.style.width = data.flashcards.width;
+
+      const scoreSongs = document.getElementById('score-songs');
+      const barSongs = document.getElementById('bar-songs');
+      if (scoreSongs) scoreSongs.textContent = data.songs.score;
+      if (barSongs) barSongs.style.width = data.songs.width;
+
+      const scoreGames = document.getElementById('score-games');
+      const barGames = document.getElementById('bar-games');
+      if (scoreGames) scoreGames.textContent = data.games.score;
+      if (barGames) barGames.style.width = data.games.width;
+
+      ['week1', 'after', 'before'].forEach(key => {
+        const btn = document.getElementById(`chart-btn-${key}`);
+        if (!btn) return;
+        if (key === stage) {
+          btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#D96B43] text-white transition';
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-extrabold text-[#2B2B2B] hover:bg-white transition';
+        }
+      });
+    }
+
+    function triggerCelebration() {
+      const msg = document.getElementById('applause-message');
+      if (msg) {
+        msg.classList.remove('opacity-0');
+        msg.classList.add('opacity-100');
+      }
+    }
+
+    function toggleOverviewModal() {
+      const modal = document.getElementById('overview-modal');
+      if (modal) {
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('flex');
+      }
+    }
+
+    window.onload = initNavigationUI;
+  </script>
+</body>
+</html>
