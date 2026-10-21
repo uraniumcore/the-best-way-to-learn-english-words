@@ -340,13 +340,14 @@
 
           <!-- Presentation Menu Bar -->
           <div class="flex items-center gap-1 sm:gap-2 text-xs font-bold text-[#5C534E] mt-0.5 overflow-x-auto">
-            <button onclick="toggleOverviewModal()" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Все слайды (1–10)</button>
+            <button onclick="toggleOverviewModal()" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Все слайды (1–11)</button>
             <button onclick="goToSlide(1)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Проблема (Сл. 2)</button>
-            <button onclick="goToSlide(2)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">3 Метода (Сл. 3)</button>
-            <button onclick="goToSlide(3)" class="bg-[#E3EFE8] hover:bg-[#2D5A43] hover:text-white text-[#2D5A43] font-extrabold px-2 py-0.5 rounded transition">🎬 Видео методов (Сл. 4–6)</button>
-            <button onclick="goToSlide(6)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Гипотеза (Сл. 7)</button>
+            <button onclick="goToSlide(2)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Гипотеза (Сл. 3)</button>
+            <button onclick="goToSlide(3)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">3 Метода (Сл. 4)</button>
+            <button onclick="goToSlide(4)" class="bg-[#E3EFE8] hover:bg-[#2D5A43] hover:text-white text-[#2D5A43] font-extrabold px-2 py-0.5 rounded transition">🎬 Видео методов (Сл. 5–7)</button>
             <button onclick="goToSlide(7)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Результаты (Сл. 8)</button>
-            <button onclick="goToSlide(8)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Выводы (Сл. 9)</button>
+            <button onclick="goToSlide(8)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Видео теста (Сл. 9)</button>
+            <button onclick="goToSlide(9)" class="hover:bg-[#F9E6D8] hover:text-[#2B2B2B] px-1.5 py-0.5 rounded transition">Выводы (Сл. 10)</button>
           </div>
         </div>
       </div>
@@ -395,7 +396,7 @@
 
         <!-- Current Slide Pill -->
         <span id="top-slide-badge" class="hidden sm:inline-block px-3 py-1 rounded-lg bg-white border border-[#D96B43]/20 font-extrabold text-[#D96B43]">
-          Слайд 1 из 10
+          Слайд 1 из 11
         </span>
       </div>
 
@@ -411,10 +412,10 @@
   <!-- ==================== MAIN GOOGLE SLIDES EDITOR AREA ==================== -->
   <div class="flex-1 flex overflow-hidden relative">
 
-    <!-- LEFT FILMSTRIP SIDEBAR (Список миниатюр 1–10 как в Google Slides) -->
+    <!-- LEFT FILMSTRIP SIDEBAR (Список миниатюр 1–11 как в Google Slides) -->
     <aside id="filmstrip-sidebar" class="gslides-filmstrip w-52 sm:w-60 bg-[#F7F2EB] border-r border-[#D96B43]/20 overflow-y-auto p-3 space-y-2.5 shrink-0 select-none z-20">
       <div class="flex items-center justify-between px-1 pb-1 border-b border-[#D96B43]/15">
-        <span class="text-[11px] font-black uppercase tracking-wider text-[#5C534E]">Слайды (10)</span>
+        <span class="text-[11px] font-black uppercase tracking-wider text-[#5C534E]">Слайды (11)</span>
         <span class="text-[10px] font-bold text-[#D96B43]">16:9</span>
       </div>
       <div id="filmstrip-list" class="space-y-2.5">
@@ -477,8 +478,8 @@
                     <span>Next Slide</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                   </button>
-                  <button onclick="goToSlide(3)" class="px-4 py-2.5 rounded-xl bg-white border-2 border-[#2D5A43]/25 text-[#2D5A43] font-extrabold text-xs sm:text-sm hover:bg-[#E3EFE8] transition">
-                    🎬 3 Videos in Action (Slide 4)
+                  <button onclick="goToSlide(4)" class="px-4 py-2.5 rounded-xl bg-white border-2 border-[#2D5A43]/25 text-[#2D5A43] font-extrabold text-xs sm:text-sm hover:bg-[#E3EFE8] transition">
+                    🎬 Видео методов (Слайд 5)
                   </button>
                 </div>
               </div>
@@ -586,12 +587,46 @@
             </div>
           </section>
 
-          <!-- ==================== SLIDE 3: METHODS ==================== -->
+          <!-- ==================== SLIDE 3: HYPOTHESIS ==================== -->
           <section class="slide-section" data-slide="2">
+            <div class="max-w-4xl mx-auto w-full my-auto text-center space-y-6">
+              <div class="space-y-1">
+                <span class="px-3.5 py-1 rounded-full bg-[#F9E6D8] text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
+                  Slide 3 • Hypothesis
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
+                  What I expected
+                </h2>
+              </div>
+
+              <div class="story-card-peach p-7 sm:p-10 max-w-2xl mx-auto">
+                <div class="floating-slow inline-flex flex-col items-center">
+                  <span class="text-xs font-black uppercase tracking-widest text-[#2D5A43] mb-2">My Predicted Winner</span>
+                  <div class="px-8 py-4 rounded-3xl bg-gradient-to-r from-[#D96B43] to-[#E87A5D] text-white shadow-lg flex items-center gap-3 border-4 border-white">
+                    <span class="text-3xl sm:text-4xl">🎲</span>
+                    <span class="text-3xl sm:text-4xl font-black tracking-tight">Games</span>
+                  </div>
+                </div>
+
+                <p class="text-xl sm:text-2xl font-extrabold text-[#2B2B2B] mt-6 leading-relaxed">
+                  "Before the experiment, I thought games would help pupils remember the most words."
+                </p>
+
+                <div class="mt-5 pt-4 border-t border-[#D96B43]/20 flex flex-wrap items-center justify-center gap-2.5 text-xs sm:text-sm font-bold text-[#5C534E]">
+                  <span class="px-3 py-1 rounded-xl bg-white">✨ High engagement</span>
+                  <span class="px-3 py-1 rounded-xl bg-white">🤝 Teamwork</span>
+                  <span class="px-3 py-1 rounded-xl bg-white">😄 Fun emotions</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 4: METHODS ==================== -->
+          <section class="slide-section" data-slide="3">
             <div class="max-w-5xl mx-auto w-full my-auto space-y-5">
               <div class="text-center space-y-1">
                 <span class="px-3.5 py-1 rounded-full bg-[#E3EFE8] text-[#2D5A43] font-extrabold text-xs uppercase tracking-widest">
-                  Slide 3 • Methodology
+                  Slide 4 • Methodology
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
                   I compared three learning methods
@@ -652,23 +687,23 @@
                 <div class="flex items-center gap-3">
                   <span id="method-preview-icon" class="text-xl">🎬</span>
                   <p id="method-preview-text" class="text-xs sm:text-sm font-bold text-[#2B2B2B]">
-                    Нажмите на любую карточку метода или перейдите на <button onclick="goToSlide(3)" class="underline font-black text-[#D96B43]">Слайд 4 (Видео всех 3 методов)</button>, чтобы сразу показать их в действии!
+                    Нажмите на любую карточку метода или перейдите на <button onclick="goToSlide(4)" class="underline font-black text-[#D96B43]">Слайд 5 (Видео методов)</button>, чтобы сразу показать их в действии!
                   </p>
                 </div>
-                <button onclick="goToSlide(3)" class="text-[11px] font-extrabold uppercase px-3 py-1.5 rounded-lg bg-[#2D5A43] text-white hover:bg-[#D96B43] transition shrink-0">
-                  Смотреть 3 видео ▶
+                <button onclick="goToSlide(4)" class="text-[11px] font-extrabold uppercase px-3 py-1.5 rounded-lg bg-[#2D5A43] text-white hover:bg-[#D96B43] transition shrink-0">
+                  Смотреть видео методов ▶
                 </button>
               </div>
             </div>
           </section>
 
-          <!-- ==================== SLIDE 4: VIDEO 1 — FLASHCARDS ==================== -->
-          <section class="slide-section" data-slide="3">
+          <!-- ==================== SLIDE 5: VIDEO 1 — FLASHCARDS ==================== -->
+          <section class="slide-section" data-slide="4">
             <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
               <div class="flex items-center justify-between border-b border-[#D96B43]/15 pb-2 shrink-0">
                 <div class="flex items-center gap-2">
                   <span class="px-3 py-1 rounded-full bg-[#D96B43] text-white font-extrabold text-xs uppercase tracking-wider">
-                    Slide 4 • Method 1: Flashcards
+                    Slide 5 • Method 1: Flashcards
                   </span>
                   <h2 class="text-xl sm:text-2xl font-black text-[#2B2B2B]">
                     Flashcards Group in Action
@@ -698,8 +733,8 @@
             </div>
           </section>
 
-          <!-- ==================== SLIDE 5: VIDEO 2 — SONGS ==================== -->
-          <section class="slide-section" data-slide="4">
+          <!-- ==================== SLIDE 6: VIDEO 2 — SONGS ==================== -->
+          <section class="slide-section" data-slide="5">
             <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
               <div class="flex items-center justify-between border-b border-[#D96B43]/15 pb-2 shrink-0">
                 <div class="flex items-center gap-2">
@@ -764,13 +799,13 @@
             </div>
           </section>
 
-          <!-- ==================== SLIDE 6: VIDEO 3 — GAMES IN ACTION ==================== -->
-          <section class="slide-section" data-slide="5">
+          <!-- ==================== SLIDE 7: VIDEO 3 — GAMES IN ACTION ==================== -->
+          <section class="slide-section" data-slide="6">
             <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
               <div class="flex items-center justify-between border-b border-[#2D5A43]/15 pb-2 shrink-0">
                 <div class="flex items-center gap-2">
                   <span class="px-3 py-1 rounded-full bg-[#2D5A43] text-white font-extrabold text-xs uppercase tracking-wider">
-                    Slide 6 • Method 3: Games
+                    Slide 7 • Method 3: Games
                   </span>
                   <h2 class="text-xl sm:text-2xl font-black text-[#2B2B2B]">
                     Games Group in Action
@@ -807,39 +842,10 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
 
-          <!-- ==================== SLIDE 7: HYPOTHESIS ==================== -->
-          <section class="slide-section" data-slide="6">
-            <div class="max-w-4xl mx-auto w-full my-auto text-center space-y-6">
-              <div class="space-y-1">
-                <span class="px-3.5 py-1 rounded-full bg-[#F9E6D8] text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
-                  Slide 7 • Hypothesis
-                </span>
-                <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
-                  What I expected
-                </h2>
-              </div>
-
-              <div class="story-card-peach p-7 sm:p-10 max-w-2xl mx-auto">
-                <div class="floating-slow inline-flex flex-col items-center">
-                  <span class="text-xs font-black uppercase tracking-widest text-[#2D5A43] mb-2">My Predicted Winner</span>
-                  <div class="px-8 py-4 rounded-3xl bg-gradient-to-r from-[#D96B43] to-[#E87A5D] text-white shadow-lg flex items-center gap-3 border-4 border-white">
-                    <span class="text-3xl sm:text-4xl">🎲</span>
-                    <span class="text-3xl sm:text-4xl font-black tracking-tight">Games</span>
-                  </div>
-                </div>
-
-                <p class="text-xl sm:text-2xl font-extrabold text-[#2B2B2B] mt-6 leading-relaxed">
-                  "Before the experiment, I thought games would help pupils remember the most words."
-                </p>
-
-                <div class="mt-5 pt-4 border-t border-[#D96B43]/20 flex flex-wrap items-center justify-center gap-2.5 text-xs sm:text-sm font-bold text-[#5C534E]">
-                  <span class="px-3 py-1 rounded-xl bg-white">✨ High engagement</span>
-                  <span class="px-3 py-1 rounded-xl bg-white">🤝 Teamwork</span>
-                  <span class="px-3 py-1 rounded-xl bg-white">😄 Fun emotions</span>
-                </div>
+              <div class="p-2.5 rounded-xl bg-white/90 border border-[#2D5A43]/20 flex items-center justify-between text-xs font-bold text-[#5C534E] shrink-0">
+                <span>🎲 Active practice through team games and competitions.</span>
+                <button onclick="nextSlide()" class="btn-terracotta px-3 py-1 text-xs font-extrabold">Результаты эксперимента ▶</button>
               </div>
             </div>
           </section>
@@ -916,17 +922,71 @@
                   <p class="text-xs sm:text-sm font-bold text-[#5C534E]">
                     "After one week, I compared the test results to see which method worked best."
                   </p>
+                  <button onclick="nextSlide()" class="btn-green px-3.5 py-1.5 text-xs font-extrabold flex items-center gap-1.5">
+                    <span>Видео теста (Слайд 9) ▶</span>
+                  </button>
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- ==================== SLIDE 9: CONCLUSIONS ==================== -->
+          <!-- ==================== SLIDE 9: VIDEO — TEST RESULTS ==================== -->
           <section class="slide-section" data-slide="8">
+            <div class="max-w-5xl mx-auto w-full h-full flex flex-col justify-between my-auto gap-3">
+              <div class="flex items-center justify-between border-b border-[#2D5A43]/15 pb-2 shrink-0">
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 rounded-full bg-[#2D5A43] text-white font-extrabold text-xs uppercase tracking-wider">
+                    Slide 9 • Test Results
+                  </span>
+                  <h2 class="text-xl sm:text-2xl font-black text-[#2B2B2B]">
+                    Vocabulary Testing in Action
+                  </h2>
+                </div>
+                <span class="text-xs font-bold text-[#2D5A43]">1-Week Retention Check</span>
+              </div>
+
+              <!-- Разметка для вертикального 9:16 Shorts видео во всю высоту по центру -->
+              <div class="flex-1 flex flex-col md:flex-row items-center justify-center gap-6 min-h-0 py-1">
+                <div class="h-full max-h-[430px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-4 border-white outline outline-2 outline-[#2D5A43]/30 bg-black shrink-0">
+                  <iframe 
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/fo9FvSSEFdk?rel=0&modestbranding=1" 
+                    title="Vocabulary Testing Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                  </iframe>
+                </div>
+
+                <div class="story-card-green p-5 max-w-sm flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-[11px] font-black uppercase tracking-wider text-[#2D5A43]">Testing Stage</span>
+                    <h3 class="text-lg font-black text-[#2B2B2B] mt-1">Pupils Taking the Retention Test</h3>
+                    <p class="text-xs font-semibold text-[#5C534E] mt-2 leading-relaxed">
+                      After one week, each group took the same vocabulary test to see how many words they truly remembered.
+                    </p>
+                  </div>
+                  <div class="space-y-1.5 text-xs font-bold text-[#2D5A43] bg-white/80 p-3 rounded-xl border border-[#2D5A43]/20">
+                    <div>✓ 10 target vocabulary words tested</div>
+                    <div>✓ Fair and equal testing conditions</div>
+                    <div>✓ Confirmed the Games group success (9.2 / 10)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-[#E3EFE8] border border-[#2D5A43]/25 flex items-center justify-between text-xs font-bold text-[#5C534E] shrink-0">
+                <span>📝 Testing pupils one week after learning to discover the best retention method.</span>
+                <button onclick="nextSlide()" class="btn-green px-3 py-1 text-xs font-extrabold">К выводам ▶</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================== SLIDE 10: CONCLUSIONS ==================== -->
+          <section class="slide-section" data-slide="9">
             <div class="max-w-5xl mx-auto w-full my-auto space-y-6">
               <div class="text-center space-y-1">
                 <span class="px-3.5 py-1 rounded-full bg-[#F9E6D8] text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
-                  Slide 9 • Conclusions
+                  Slide 10 • Conclusions
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-black text-[#2B2B2B]">
                   What I learned
@@ -965,8 +1025,8 @@
             </div>
           </section>
 
-          <!-- ==================== SLIDE 10: OUTRO ==================== -->
-          <section class="slide-section" data-slide="9">
+          <!-- ==================== SLIDE 11: OUTRO ==================== -->
+          <section class="slide-section" data-slide="10">
             <div class="max-w-4xl mx-auto w-full my-auto text-center">
               <div class="story-card-peach p-7 sm:p-10">
                 <div class="w-20 h-20 mx-auto rounded-3xl bg-[#2D5A43] text-white flex items-center justify-center text-4xl shadow-lg mb-4 floating-slow">
@@ -974,7 +1034,7 @@
                 </div>
 
                 <span class="px-3.5 py-1 rounded-full bg-white text-[#D96B43] font-extrabold text-xs uppercase tracking-widest">
-                  Slide 10 • Conclusion
+                  Slide 11 • Conclusion
                 </span>
 
                 <h2 class="text-3xl sm:text-5xl font-black text-[#2B2B2B] mt-3">
@@ -989,8 +1049,8 @@
                   <button onclick="triggerCelebration()" class="btn-terracotta px-6 py-3 text-sm font-extrabold flex items-center gap-2">
                     <span>👏 Applause!</span>
                   </button>
-                  <button onclick="goToSlide(3)" class="btn-green px-6 py-3 text-sm font-extrabold flex items-center gap-2">
-                    <span>🎬 Back to Videos (Slide 4)</span>
+                  <button onclick="goToSlide(4)" class="btn-green px-6 py-3 text-sm font-extrabold flex items-center gap-2">
+                    <span>🎬 Back to Videos (Slide 5)</span>
                   </button>
                 </div>
 
@@ -1020,13 +1080,13 @@
         <div class="flex items-center gap-2">
           <button id="btn-prev" onclick="prevSlide()" class="px-3 py-1 rounded-lg bg-white border border-[#D96B43]/20 font-bold hover:bg-[#F9E6D8] disabled:opacity-40 disabled:cursor-not-allowed">◀ Назад</button>
           <button id="btn-next" onclick="nextSlide()" class="px-3 py-1 rounded-lg bg-white border border-[#D96B43]/20 font-bold hover:bg-[#F9E6D8] disabled:opacity-40 disabled:cursor-not-allowed">Вперед ▶</button>
-          <span id="bottom-slide-counter" class="font-extrabold text-[#5C534E] ml-2">Слайд 1 из 10</span>
+          <span id="bottom-slide-counter" class="font-extrabold text-[#5C534E] ml-2">Слайд 1 из 11</span>
         </div>
         <div id="dots-container" class="hidden sm:flex items-center gap-1.5">
           <!-- Dots rendered by JS -->
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="toggleOverviewModal()" class="font-bold text-[#5C534E] hover:text-[#D96B43]">Все слайды (1–10)</button>
+          <button onclick="toggleOverviewModal()" class="font-bold text-[#5C534E] hover:text-[#D96B43]">Все слайды (1–11)</button>
         </div>
       </div>
     </div> <!-- close center stage column -->
@@ -1035,18 +1095,18 @@
   <!-- Present Mode Floating HUD (shown in full screen slideshow) -->
   <div class="present-floating-HUD fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#2B2B2B]/90 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center gap-4 shadow-2xl border border-white/20">
     <button onclick="prevSlide()" class="hover:text-[#E87A5D] transition font-black text-sm">◀</button>
-    <span id="present-hud-counter" class="text-xs font-black tracking-wider text-[#FAF6F0]">1 / 10</span>
+    <span id="present-hud-counter" class="text-xs font-black tracking-wider text-[#FAF6F0]">1 / 11</span>
     <button onclick="nextSlide()" class="hover:text-[#E87A5D] transition font-black text-sm">▶</button>
     <div class="h-4 w-[1px] bg-white/20"></div>
     <button onclick="exitPresentMode()" class="text-xs font-bold hover:text-[#E87A5D] transition">✕ Выйти (Esc)</button>
   </div>
 
-  <!-- Overview Modal (All 10 Slides Grid) -->
+  <!-- Overview Modal (All 11 Slides Grid) -->
   <div id="overview-modal" class="fixed inset-0 z-50 bg-[#2B2B2B]/60 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="story-card max-w-4xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 space-y-5 bg-[#FAF6F0]">
       <div class="flex items-center justify-between border-b border-[#D96B43]/20 pb-3">
         <div>
-          <h3 class="text-xl font-black text-[#2B2B2B]">Все слайды презентации (1–10)</h3>
+          <h3 class="text-xl font-black text-[#2B2B2B]">Все слайды презентации (1–11)</h3>
           <p class="text-xs font-bold text-[#5C534E]">Нажмите на любой слайд для быстрого перехода</p>
         </div>
         <button onclick="toggleOverviewModal()" class="px-3 py-1.5 rounded-xl bg-white border border-[#D96B43]/30 font-extrabold text-sm hover:bg-[#F9E6D8]">
@@ -1061,14 +1121,15 @@
     const SLIDES_META = [
       { num: 1, short: "Title", title: "The Best Way to Learn English Words", icon: "🎒", badge: "Grade 5 Project", note: "Hello everyone! Today I want to share my Grade 5 research project: The Best Way to Learn English Words." },
       { num: 2, short: "The Problem", title: "Why I chose this project", icon: "🧩", badge: "3 Challenges", note: "New English words can be difficult to remember, and sometimes we forget them later." },
-      { num: 3, short: "3 Methods", title: "I compared three learning methods", icon: "🃏", badge: "Flashcards • Songs • Games", note: "I compared three learning methods: Flashcards, Songs, and Games. Let's look at each video!" },
-      { num: 4, short: "Flashcards", title: "Flashcards Group in Action", icon: "🖼️", badge: "Method 1", isVideo: true, note: "Here is the first group practising with Flashcards." },
-      { num: 5, short: "Songs", title: "Songs & Singing Group", icon: "🎵", badge: "Method 2", isVideo: true, note: "Here is the second group learning words with Songs and rhythm." },
-      { num: 6, short: "Games", title: "Games Group in Action", icon: "🎲", badge: "Method 3", isVideo: true, note: "Here is the third group playing interactive vocabulary games." },
-      { num: 7, short: "Hypothesis", title: "What I expected", icon: "💡", badge: "Predicted: Games", note: "Before the experiment, I predicted Games would win." },
+      { num: 3, short: "Hypothesis", title: "What I expected", icon: "💡", badge: "Predicted: Games", note: "Before the experiment, I predicted Games would help pupils remember the most words." },
+      { num: 4, short: "3 Methods", title: "I compared three learning methods", icon: "🃏", badge: "Flashcards • Songs • Games", note: "I compared three learning methods: Flashcards, Songs, and Games. Let's look at each video!" },
+      { num: 5, short: "Flashcards", title: "Flashcards Group in Action", icon: "🖼️", badge: "Method 1", isVideo: true, note: "Here is the first group practising with Flashcards." },
+      { num: 6, short: "Songs", title: "Songs & Singing Group", icon: "🎵", badge: "Method 2", isVideo: true, note: "Here is the second group learning words with Songs and rhythm." },
+      { num: 7, short: "Games", title: "Games Group in Action", icon: "🎲", badge: "Method 3", isVideo: true, note: "Here is the third group playing interactive vocabulary games." },
       { num: 8, short: "Results", title: "What did the results show?", icon: "📊", badge: "1 Week Retention", note: "Games helped pupils remember the most words after 1 week!" },
-      { num: 9, short: "Conclusions", title: "What I learned", icon: "🌟", badge: "Key Takeaways", note: "Different methods make learning interesting, and AI helped me prepare tasks." },
-      { num: 10, short: "Thank You!", title: "Thank you for listening!", icon: "🎓", badge: "Conclusion", note: "Thank you for listening! Do you have any questions?" }
+      { num: 9, short: "Test Video", title: "Vocabulary Testing in Action", icon: "📝", badge: "Results Check", isVideo: true, note: "Here is the video showing pupils taking the vocabulary retention test after 1 week." },
+      { num: 10, short: "Conclusions", title: "What I learned", icon: "🌟", badge: "Key Takeaways", note: "Different methods make learning interesting, and AI helped me prepare tasks." },
+      { num: 11, short: "Thank You!", title: "Thank you for listening!", icon: "🎓", badge: "Conclusion", note: "Thank you for listening! Do you have any questions?" }
     ];
 
     let currentSlide = 0;
